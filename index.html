@@ -949,8 +949,8 @@
             
             // Update navigation
             const navItems = {
-                fr: ['Accueil', 'Programme', 'Infos Pratiques', 'Photos', 'Hébergements'],
-                en: ['Home', 'Schedule', 'Practical Info', 'Photos', 'Accommodations']
+                fr: ['Accueil', 'Nos Moments', 'Programme', 'Infos Pratiques', 'Photos', 'Liste de Mariage', 'Hébergements'],
+                en: ['Home', 'Our Moments', 'Schedule', 'Practical Info', 'Photos', 'Wedding Registry', 'Accommodations']
             };
             
             const links = document.querySelectorAll('.nav-link');
@@ -994,12 +994,15 @@
             console.log('📍 URL actuelle:', window.location.href);
             console.log('📂 Chemin de base détecté:', basePath);
             
-            loadHeroBackground();
+            // Essayer de charger votre image personnalisée
+            tryLoadCustomChateauImage();
+            
+            // Charger la galerie de photos
             loadGallery();
             
             // Test de diagnostic pour vérifier les chemins
             console.log('🖼️ Chemins des images:');
-            console.log('  - Château:', `${basePath}/chateau-santeny.jpg`);
+            console.log('  - Château (votre image):', `${basePath}/chateau-santeny.jpg`);
             console.log('  - Photo 1:', `${basePath}/photo1.jpg`);
             console.log('  - Photo 2:', `${basePath}/photo2.jpg`);
         });
