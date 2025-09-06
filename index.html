@@ -103,15 +103,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Image chargée immédiatement */
+            /* Image chargée immédiatement - d'abord locale, puis Wikipedia en fallback */
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
-                        url('chateau-santeny.jpg') center/cover no-repeat;
-            background-attachment: fixed;
-        }
-
-        /* Fallback si l'image locale ne marche pas */
-        .hero.with-backup {
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('chateau-santeny.jpg') center/cover no-repeat,
+                        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
                         url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Ch%C3%A2teau_de_Santeny_en_2013_09.jpg/1920px-Ch%C3%A2teau_de_Santeny_en_2013_09.jpg') center/cover no-repeat;
             background-attachment: fixed;
         }
@@ -216,17 +211,17 @@
         }
 
         .welcome-content {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .welcome-box {
             background: white;
             border-radius: 15px;
             padding: 2.5rem;
-            margin: 2rem 0;
+            margin: 2rem auto;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 900px;
         }
 
         .welcome-box h3 {
@@ -240,9 +235,29 @@
             font-size: 1.1rem;
         }
 
-        .welcome-box.special-note {
+        .welcome-box.special {
+            background: linear-gradient(135deg, #fff9f0, #ffffff);
             border: 2px solid var(--secondary-color);
-            background: #fffef5;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .column-box {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .column-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
         /* Gallery Section */
@@ -348,6 +363,13 @@
             transform: translateY(-2px);
         }
 
+        .accommodation-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin: 3rem 0 2rem;
+            font-size: 1.8rem;
+        }
+
         /* Footer */
         footer {
             background: var(--primary-color);
@@ -393,8 +415,8 @@
                 font-size: 2.5rem;
             }
 
-            .hero-subtitle {
-                font-size: 1.2rem;
+            .two-columns {
+                grid-template-columns: 1fr;
             }
 
             .gallery {
@@ -453,26 +475,51 @@
             <div class="lang-content fr active">
                 <h2 class="section-title">Bienvenue</h2>
                 
-                <div class="welcome-box">
-                    <h3>📸 Un jour à immortaliser</h3>
-                    <p>
-                        Pour que nous puissions profiter pleinement de ce jour magique avec vous, 
-                        une photographe professionnelle sera présente pour capturer tous les moments précieux 
-                        de la cérémonie jusqu'au dîner. N'hésitez pas à aller la voir si vous souhaitez 
-                        des portraits ou des photos particulières. Elle sera ravie d'immortaliser 
-                        vos plus beaux sourires et les moments de complicité que nous partagerons ensemble.
+                <div class="welcome-box special">
+                    <h3 style="font-size: 1.8rem; text-align: center;">💕 Notre bonheur de vous accueillir</h3>
+                    <p style="font-size: 1.15rem; line-height: 1.9; text-align: center;">
+                        Après plus de trois ans de vie commune remplis d'amour, de rires et d'aventures, 
+                        nous sommes absolument ravis et émus de vous inviter à célébrer avec nous 
+                        le plus beau jour de notre vie ! Votre présence à nos côtés pour ce moment 
+                        si important à nos yeux rendra cette journée encore plus magique et mémorable. 
+                        Nous avons hâte de partager avec vous cette célébration de notre amour 
+                        et de créer ensemble des souvenirs inoubliables qui resteront gravés 
+                        dans nos cœurs pour toujours.
                     </p>
                 </div>
 
-                <div class="welcome-box special-note">
-                    <h3>👨‍👩‍👧‍👦 Note aux parents</h3>
-                    <p>
-                        Pour que cette journée reste un moment privilégié et que chacun puisse 
-                        pleinement savourer les festivités, nous avons fait le choix de célébrer 
-                        notre union dans une ambiance adulte. Nous vous remercions donc de venir 
-                        sans vos enfants (sauf mention contraire sur votre invitation). 
-                        Nous comptons sur votre compréhension et vous invitons à prendre 
-                        vos dispositions à l'avance pour profiter sereinement de cette belle soirée.
+                <div class="two-columns">
+                    <div class="column-box">
+                        <h3>📸 Un jour à immortaliser</h3>
+                        <p>
+                            Pour que nous puissions profiter pleinement de ce jour magique avec vous, 
+                            une photographe professionnelle sera présente pour capturer tous les moments précieux 
+                            de la cérémonie jusqu'au dîner. N'hésitez pas à aller la voir si vous souhaitez 
+                            des portraits ou des photos particulières. Elle sera ravie d'immortaliser 
+                            vos plus beaux sourires et les moments de complicité que nous partagerons ensemble.
+                        </p>
+                    </div>
+
+                    <div class="column-box">
+                        <h3>💝 Une célébration entre adultes</h3>
+                        <p>
+                            Nous avons à cœur de partager cette journée exceptionnelle avec vous dans une atmosphère 
+                            où chacun pourra profiter pleinement des festivités. C'est pourquoi nous avons choisi 
+                            de célébrer notre union entre adultes, pour que tous puissent se détendre et profiter 
+                            de chaque instant. Nous savons que vous comprendrez ce choix et nous vous remercions 
+                            chaleureusement de prendre vos dispositions pour vos enfants (sauf mention spéciale 
+                            sur votre invitation). Cela nous permettra à tous de vivre cette soirée en toute sérénité !
+                        </p>
+                    </div>
+                </div>
+
+                <div class="welcome-box">
+                    <h3 style="text-align: center;">👗 Dress Code : Tenue chic exigée</h3>
+                    <p style="text-align: center;">
+                        Pour cette occasion spéciale, nous vous invitons à vous parer de vos plus belles tenues. 
+                        Messieurs, sortez vos plus beaux costumes ! Mesdames, c'est l'occasion de briller 
+                        dans vos robes élégantes ! Nous souhaitons que cette journée soit placée sous le signe 
+                        de l'élégance et du raffinement.
                     </p>
                 </div>
             </div>
@@ -480,26 +527,51 @@
             <div class="lang-content en">
                 <h2 class="section-title">Welcome</h2>
                 
-                <div class="welcome-box">
-                    <h3>📸 A day to remember</h3>
-                    <p>
-                        To ensure we can fully enjoy this magical day with you, 
-                        a professional photographer will be present to capture all the precious moments 
-                        from the ceremony through dinner. Feel free to approach her if you would like 
-                        specific portraits or photos. She will be delighted to capture 
-                        your best smiles and the special moments we'll share together.
+                <div class="welcome-box special">
+                    <h3 style="font-size: 1.8rem; text-align: center;">💕 Our joy in welcoming you</h3>
+                    <p style="font-size: 1.15rem; line-height: 1.9; text-align: center;">
+                        After more than three years of life together filled with love, laughter and adventures, 
+                        we are absolutely delighted and touched to invite you to celebrate with us 
+                        the most beautiful day of our lives! Your presence by our side for this moment 
+                        so important to us will make this day even more magical and memorable. 
+                        We can't wait to share with you this celebration of our love 
+                        and create together unforgettable memories that will remain engraved 
+                        in our hearts forever.
                     </p>
                 </div>
 
-                <div class="welcome-box special-note">
-                    <h3>👨‍👩‍👧‍👦 Note to parents</h3>
-                    <p>
-                        To ensure this day remains a special moment where everyone can 
-                        fully enjoy the festivities, we have chosen to celebrate 
-                        our union in an adults-only atmosphere. We kindly ask you to come 
-                        without your children (unless specifically mentioned on your invitation). 
-                        We appreciate your understanding and invite you to make 
-                        arrangements in advance to enjoy this beautiful evening peacefully.
+                <div class="two-columns">
+                    <div class="column-box">
+                        <h3>📸 A day to remember</h3>
+                        <p>
+                            To ensure we can fully enjoy this magical day with you, 
+                            a professional photographer will be present to capture all the precious moments 
+                            from the ceremony through dinner. Feel free to approach her if you would like 
+                            specific portraits or photos. She will be delighted to capture 
+                            your best smiles and the special moments we'll share together.
+                        </p>
+                    </div>
+
+                    <div class="column-box">
+                        <h3>💝 An adults-only celebration</h3>
+                        <p>
+                            We are eager to share this exceptional day with you in an atmosphere 
+                            where everyone can fully enjoy the festivities. That's why we've chosen 
+                            to celebrate our union among adults, so everyone can relax and enjoy 
+                            every moment. We know you'll understand this choice and warmly thank you 
+                            for making arrangements for your children (unless specifically mentioned 
+                            on your invitation). This will allow us all to experience this evening with complete peace of mind!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="welcome-box">
+                    <h3 style="text-align: center;">👗 Dress Code: Formal attire required</h3>
+                    <p style="text-align: center;">
+                        For this special occasion, we invite you to dress in your finest attire. 
+                        Gentlemen, bring out your best suits! Ladies, it's time to shine 
+                        in your elegant dresses! We wish this day to be marked by 
+                        elegance and refinement.
                     </p>
                 </div>
             </div>
@@ -594,6 +666,23 @@
                     <p>Services de taxi disponibles : Uber et Bolt fonctionnent dans la zone.<br>
                     30 minutes depuis Bercy Village, Paris.</p>
                 </div>
+                <div class="info-card">
+                    <h3>👗 Dress Code</h3>
+                    <p><strong>Tenue chic exigée</strong><br>
+                    Messieurs : Costume<br>
+                    Mesdames : Robe élégante<br>
+                    <em>Soyons tous élégants pour cette belle journée !</em></p>
+                </div>
+                <div class="info-card">
+                    <h3>🎁 Liste de Mariage</h3>
+                    <p>Pour contribuer à notre nouvelle vie ensemble<br>
+                    <a href="https://www.millemercismariage.com" target="_blank" class="cta-button">Accéder à la liste</a></p>
+                </div>
+                <div class="info-card">
+                    <h3>📧 Contact</h3>
+                    <p>Pour toute question<br>
+                    alexia.vianney.mariage@gmail.com</p>
+                </div>
             </div>
         </div>
         <div class="lang-content en">
@@ -622,53 +711,212 @@
                     Ladies: Elegant dress<br>
                     <em>Let's all be elegant for this beautiful day!</em></p>
                 </div>
+                <div class="info-card">
+                    <h3>🎁 Wedding Registry</h3>
+                    <p>To contribute to our new life together<br>
+                    <a href="https://www.millemercismariage.com" target="_blank" class="cta-button">Access registry</a></p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Hébergements (version simplifiée) -->
+    <!-- Hébergements -->
     <section id="hebergements" class="section">
         <div class="lang-content fr active">
             <h2 class="section-title">Hébergements à Proximité</h2>
+            
+            <h3 class="accommodation-title">Locations & Gîtes</h3>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>🏨 Ibis Budget Santeny</h3>
-                    <p>À 800m du château<br>
-                    50 chambres - ~60€/nuit<br>
-                    📞 +33 1 43 86 15 14</p>
+                    <h3>La Maison du Bonheur</h3>
+                    <p>📍 94440 Santeny<br>
+                    4 chambres, 10 voyageurs<br>
+                    François PENNACCIOLI<br>
+                    📞 06 28 23 64 04<br>
+                    <em>(2 nuits minimum)</em></p>
                 </div>
                 <div class="info-card">
-                    <h3>🏨 Kyriad Brie-Comte-Robert</h3>
-                    <p>53 chambres - ~80€/nuit<br>
-                    📞 +33 1 64 05 76 67</p>
+                    <h3>Château de Choigny</h3>
+                    <p>📍 23 rue de Lésigny, 94440 Santeny<br>
+                    1 gîte pour 2 personnes<br>
+                    90€/nuit (minimum 2 nuits)<br>
+                    Véronique BOUAN<br>
+                    📞 01 43 86 11 93<br>
+                    <em>(fermé du 15/07 au 30/08)</em></p>
                 </div>
                 <div class="info-card">
-                    <h3>🏠 Locations & Gîtes</h3>
-                    <p>Plusieurs options disponibles<br>
-                    Contactez-nous pour la liste complète</p>
+                    <h3>Château Larose</h3>
+                    <p>📍 94520 Mandres-les-Roses<br>
+                    9 chambres, 14 voyageurs<br>
+                    Carl AUGUST<br>
+                    <em>(7 nuits minimum)</em></p>
+                </div>
+                <div class="info-card">
+                    <h3>La Vie est Belle</h3>
+                    <p>📍 77166 Grisy-Suisnes<br>
+                    Maison de 200m² avec piscine<br>
+                    15 couchages<br>
+                    Manuel & Morgane<br>
+                    📞 06 07 73 41 34</p>
                 </div>
             </div>
+
+            <h3 class="accommodation-title">Hôtels à moins de 10km</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Ibis Budget ⭐⭐</h3>
+                    <p>📍 À 800m du château<br>
+                    L'Orée du Val de Marne<br>
+                    Rue du Noyer de Saint-Germain, 94440 Santeny<br>
+                    50 chambres - Environ 60€/nuit<br>
+                    📞 +33 1 43 86 15 14<br>
+                    ✉️ h2347@accor.com</p>
+                </div>
+                <div class="info-card">
+                    <h3>Kyriad ⭐⭐⭐ Brie-Comte-Robert</h3>
+                    <p>📍 Zone de la Haie Passart<br>
+                    Rue Gustave Eiffel, 77170 Brie-Comte-Robert<br>
+                    53 chambres - Environ 80€/nuit<br>
+                    📞 +33 1 64 05 76 67<br>
+                    ✉️ briecomterobert@kyriad.fr</p>
+                </div>
+                <div class="info-card">
+                    <h3>Kyriad ⭐⭐⭐ Bonneuil</h3>
+                    <p>📍 Carrefour du Général de Gaulle<br>
+                    Av Jean Rostand, 94380 Bonneuil-sur-Marne<br>
+                    80 chambres - Environ 80€/nuit<br>
+                    📞 +33 1 49 56 11 46<br>
+                    ✉️ bonneuil@kyriad.fr</p>
+                </div>
+                <div class="info-card">
+                    <h3>Les Demeures de Varennes</h3>
+                    <p>📍 2 rue de Brie, 91480 Varennes-Jarcy<br>
+                    Avec piscine et restaurant<br>
+                    25 chambres - Environ 120€/nuit<br>
+                    📞 01 69 00 53 87<br>
+                    ✉️ bonjour@demeuresdevarennes.com</p>
+                </div>
+                <div class="info-card">
+                    <h3>Abbaye du Golf ⭐⭐⭐</h3>
+                    <p>📍 Ferme des Hyverneaux, 77150 Lésigny<br>
+                    50 chambres - Environ 100€/nuit<br>
+                    📞 01 60 02 25 26<br>
+                    ✉️ reservation@hotelabbayedugolf.com</p>
+                </div>
+            </div>
+
+            <h3 class="accommodation-title">À Paris - Bercy Village</h3>
+            <div class="info-card" style="max-width: 600px; margin: 0 auto;">
+                <h3>Bercy Village</h3>
+                <p>Dans la capitale et au plus près du Château<br>
+                Hôtels, boutiques et restaurants<br>
+                30 minutes du château<br><br>
+                <strong>Restaurant recommandé :</strong><br>
+                CHAI 33 - 33 cour Saint-Émilion, Paris 75012</p>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem; font-style: italic;">
+                ℹ️ Tarifs indiqués à titre indicatif - Merci de consulter directement les établissements<br>
+                🚐 Service navette possible pour certains hôtels
+            </p>
         </div>
         <div class="lang-content en">
             <h2 class="section-title">Nearby Accommodations</h2>
+            
+            <h3 class="accommodation-title">Vacation Rentals & Cottages</h3>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>🏨 Ibis Budget Santeny</h3>
-                    <p>800m from the castle<br>
-                    50 rooms - ~60€/night<br>
-                    📞 +33 1 43 86 15 14</p>
+                    <h3>La Maison du Bonheur</h3>
+                    <p>📍 94440 Santeny<br>
+                    4 bedrooms, 10 guests<br>
+                    François PENNACCIOLI<br>
+                    📞 06 28 23 64 04<br>
+                    <em>(2 nights minimum)</em></p>
                 </div>
                 <div class="info-card">
-                    <h3>🏨 Kyriad Brie-Comte-Robert</h3>
-                    <p>53 rooms - ~80€/night<br>
-                    📞 +33 1 64 05 76 67</p>
+                    <h3>Château de Choigny</h3>
+                    <p>📍 23 rue de Lésigny, 94440 Santeny<br>
+                    1 cottage for 2 people<br>
+                    90€/night (minimum 2 nights)<br>
+                    Véronique BOUAN<br>
+                    📞 01 43 86 11 93<br>
+                    <em>(closed from 15/07 to 30/08)</em></p>
                 </div>
                 <div class="info-card">
-                    <h3>🏠 Rentals & Cottages</h3>
-                    <p>Several options available<br>
-                    Contact us for the complete list</p>
+                    <h3>Château Larose</h3>
+                    <p>📍 94520 Mandres-les-Roses<br>
+                    9 bedrooms, 14 guests<br>
+                    Carl AUGUST<br>
+                    <em>(7 nights minimum)</em></p>
+                </div>
+                <div class="info-card">
+                    <h3>La Vie est Belle</h3>
+                    <p>📍 77166 Grisy-Suisnes<br>
+                    200m² house with pool<br>
+                    Sleeps 15<br>
+                    Manuel & Morgane<br>
+                    📞 06 07 73 41 34</p>
                 </div>
             </div>
+
+            <h3 class="accommodation-title">Hotels within 10km</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Ibis Budget ⭐⭐</h3>
+                    <p>📍 800m from the castle<br>
+                    L'Orée du Val de Marne<br>
+                    Rue du Noyer de Saint-Germain, 94440 Santeny<br>
+                    50 rooms - Around 60€/night<br>
+                    📞 +33 1 43 86 15 14<br>
+                    ✉️ h2347@accor.com</p>
+                </div>
+                <div class="info-card">
+                    <h3>Kyriad ⭐⭐⭐ Brie-Comte-Robert</h3>
+                    <p>📍 Zone de la Haie Passart<br>
+                    Rue Gustave Eiffel, 77170 Brie-Comte-Robert<br>
+                    53 rooms - Around 80€/night<br>
+                    📞 +33 1 64 05 76 67<br>
+                    ✉️ briecomterobert@kyriad.fr</p>
+                </div>
+                <div class="info-card">
+                    <h3>Kyriad ⭐⭐⭐ Bonneuil</h3>
+                    <p>📍 Carrefour du Général de Gaulle<br>
+                    Av Jean Rostand, 94380 Bonneuil-sur-Marne<br>
+                    80 rooms - Around 80€/night<br>
+                    📞 +33 1 49 56 11 46<br>
+                    ✉️ bonneuil@kyriad.fr</p>
+                </div>
+                <div class="info-card">
+                    <h3>Les Demeures de Varennes</h3>
+                    <p>📍 2 rue de Brie, 91480 Varennes-Jarcy<br>
+                    With pool and restaurant<br>
+                    25 rooms - Around 120€/night<br>
+                    📞 01 69 00 53 87<br>
+                    ✉️ bonjour@demeuresdevarennes.com</p>
+                </div>
+                <div class="info-card">
+                    <h3>Abbaye du Golf ⭐⭐⭐</h3>
+                    <p>📍 Ferme des Hyverneaux, 77150 Lésigny<br>
+                    50 rooms - Around 100€/night<br>
+                    📞 01 60 02 25 26<br>
+                    ✉️ reservation@hotelabbayedugolf.com</p>
+                </div>
+            </div>
+
+            <h3 class="accommodation-title">In Paris - Bercy Village</h3>
+            <div class="info-card" style="max-width: 600px; margin: 0 auto;">
+                <h3>Bercy Village</h3>
+                <p>In the capital and closest to the Castle<br>
+                Hotels, shops and restaurants<br>
+                30 minutes from the castle<br><br>
+                <strong>Recommended restaurant:</strong><br>
+                CHAI 33 - 33 cour Saint-Émilion, Paris 75012</p>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem; font-style: italic;">
+                ℹ️ Rates shown are indicative - Please contact establishments directly<br>
+                🚐 Shuttle service possible for some hotels
+            </p>
         </div>
     </section>
 
@@ -685,27 +933,6 @@
     </footer>
 
     <script>
-        // Détection du chemin pour GitHub Pages
-        const isGitHubPages = window.location.hostname.includes('github.io');
-        const basePath = isGitHubPages 
-            ? '/' + window.location.pathname.split('/')[1] 
-            : '.';
-
-        // Vérifier si l'image du château se charge, sinon utiliser le backup
-        window.addEventListener('load', function() {
-            const hero = document.querySelector('.hero');
-            const testImage = new Image();
-            testImage.onerror = function() {
-                // Si l'image locale ne marche pas, ajouter la classe backup
-                hero.classList.add('with-backup');
-                console.log('Using backup image from Wikipedia');
-            };
-            testImage.onload = function() {
-                console.log('Local château image loaded successfully');
-            };
-            testImage.src = `${basePath}/chateau-santeny.jpg`;
-        });
-
         // Charger la galerie de photos
         function loadGallery() {
             const gallery = document.getElementById('photoGallery');
@@ -713,6 +940,12 @@
                 { file: 'photo1.jpg', alt: 'Photo 1' },
                 { file: 'photo2.jpg', alt: 'Photo 2' }
             ];
+
+            // Détection du chemin pour GitHub Pages
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            const basePath = isGitHubPages 
+                ? '/' + window.location.pathname.split('/')[1] 
+                : '.';
 
             photos.forEach((photo, index) => {
                 const item = document.createElement('div');
