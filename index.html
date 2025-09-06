@@ -16,7 +16,6 @@
             --secondary-color: #D4AF37;
             --text-light: #ffffff;
             --text-dark: #333;
-            --overlay: rgba(0, 0, 0, 0.6);
         }
 
         body {
@@ -24,38 +23,6 @@
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #2c2c2c;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            z-index: 1;
-        }
-
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--overlay);
         }
 
         /* Navigation */
@@ -67,7 +34,6 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -103,6 +69,19 @@
             color: var(--secondary-color);
         }
 
+        .nav-menu .cta-nav {
+            background: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            color: var(--text-dark) !important;
+            font-weight: bold;
+        }
+
+        .nav-menu .cta-nav:hover {
+            background: var(--primary-color);
+            color: var(--text-light) !important;
+        }
+
         .hamburger {
             display: none;
             flex-direction: column;
@@ -117,9 +96,27 @@
             transition: 0.3s;
         }
 
-        /* Hero Content */
-        .hero-content {
+        /* Hero Section avec image immédiate */
+        .hero {
             position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Image chargée immédiatement */
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('chateau-santeny.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Fallback si l'image locale ne marche pas */
+        .hero.with-backup {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Ch%C3%A2teau_de_Santeny_en_2013_09.jpg/1920px-Ch%C3%A2teau_de_Santeny_en_2013_09.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
             text-align: center;
             color: var(--text-light);
             padding: 2rem;
@@ -160,6 +157,7 @@
             font-style: italic;
         }
 
+        /* Language Switch */
         .lang-switch {
             position: fixed;
             top: 80px;
@@ -176,7 +174,6 @@
             cursor: pointer;
             border-radius: 5px;
             transition: transform 0.3s;
-            font-size: 0.9rem;
         }
 
         .lang-btn:hover {
@@ -212,6 +209,69 @@
             margin: 1rem auto;
         }
 
+        /* Welcome Section */
+        .welcome-section {
+            background: #f9f9f9;
+            padding: 4rem 2rem;
+        }
+
+        .welcome-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .welcome-box {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .welcome-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .welcome-box p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .welcome-box.special-note {
+            border: 2px solid var(--secondary-color);
+            background: #fffef5;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 350px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
         /* Timeline */
         .timeline {
             position: relative;
@@ -229,7 +289,6 @@
 
         .timeline-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .timeline-time {
@@ -262,53 +321,12 @@
 
         .info-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .info-card h3 {
             color: var(--primary-color);
             margin-bottom: 1rem;
             font-size: 1.5rem;
-        }
-
-        /* Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            height: 300px;
-            background-color: #f0f0f0;
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
-        }
-
-        .gallery-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #E8D5C4 0%, #D4AF37 100%);
-            color: white;
-            font-size: 1.2rem;
-            text-align: center;
-            padding: 1rem;
         }
 
         /* CTA Button */
@@ -339,32 +357,13 @@
             margin-top: 4rem;
         }
 
-        footer p {
-            margin: 0.5rem 0;
-        }
-
-        /* Language-specific content */
+        /* Language content */
         .lang-content {
             display: none;
         }
 
         .lang-content.active {
             display: block;
-        }
-
-        /* Accommodation section styles */
-        .accommodation-title {
-            color: var(--primary-color);
-            text-align: center;
-            margin: 3rem 0 2rem;
-            font-size: 1.8rem;
-        }
-
-        .accommodation-note {
-            text-align: center;
-            margin-top: 2rem;
-            font-style: italic;
-            color: #666;
         }
 
         /* Responsive */
@@ -398,41 +397,6 @@
                 font-size: 1.2rem;
             }
 
-            .hero-date {
-                font-size: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .timeline-time {
-                font-size: 1.2rem;
-            }
-
-            .lang-switch {
-                top: 80px;
-                right: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .hero-date {
-                font-size: 1.3rem;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
             .gallery {
                 grid-template-columns: 1fr;
             }
@@ -446,10 +410,11 @@
             <a href="#home" class="nav-logo">A & V</a>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link">Accueil</a></li>
+                <li><a href="#bienvenue" class="nav-link">Bienvenue</a></li>
                 <li><a href="#programme" class="nav-link">Programme</a></li>
                 <li><a href="#infos" class="nav-link">Infos Pratiques</a></li>
-                <li><a href="#photos" class="nav-link">Photos</a></li>
                 <li><a href="#hebergements" class="nav-link">Hébergements</a></li>
+                <li><a href="https://www.millemercismariage.com" target="_blank" class="nav-link cta-nav">Liste de Mariage 🎁</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -467,7 +432,6 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-bg" id="heroBg"></div>
         <div class="hero-content">
             <h1 class="hero-title">Alexia & Vianney</h1>
             <div class="lang-content fr active">
@@ -483,7 +447,79 @@
         </div>
     </section>
 
-    <!-- Programme / Program -->
+    <!-- Welcome Section -->
+    <section id="bienvenue" class="welcome-section">
+        <div class="welcome-content">
+            <div class="lang-content fr active">
+                <h2 class="section-title">Bienvenue</h2>
+                
+                <div class="welcome-box">
+                    <h3>📸 Un jour à immortaliser</h3>
+                    <p>
+                        Pour que nous puissions profiter pleinement de ce jour magique avec vous, 
+                        une photographe professionnelle sera présente pour capturer tous les moments précieux 
+                        de la cérémonie jusqu'au dîner. N'hésitez pas à aller la voir si vous souhaitez 
+                        des portraits ou des photos particulières. Elle sera ravie d'immortaliser 
+                        vos plus beaux sourires et les moments de complicité que nous partagerons ensemble.
+                    </p>
+                </div>
+
+                <div class="welcome-box special-note">
+                    <h3>👨‍👩‍👧‍👦 Note aux parents</h3>
+                    <p>
+                        Pour que cette journée reste un moment privilégié et que chacun puisse 
+                        pleinement savourer les festivités, nous avons fait le choix de célébrer 
+                        notre union dans une ambiance adulte. Nous vous remercions donc de venir 
+                        sans vos enfants (sauf mention contraire sur votre invitation). 
+                        Nous comptons sur votre compréhension et vous invitons à prendre 
+                        vos dispositions à l'avance pour profiter sereinement de cette belle soirée.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="lang-content en">
+                <h2 class="section-title">Welcome</h2>
+                
+                <div class="welcome-box">
+                    <h3>📸 A day to remember</h3>
+                    <p>
+                        To ensure we can fully enjoy this magical day with you, 
+                        a professional photographer will be present to capture all the precious moments 
+                        from the ceremony through dinner. Feel free to approach her if you would like 
+                        specific portraits or photos. She will be delighted to capture 
+                        your best smiles and the special moments we'll share together.
+                    </p>
+                </div>
+
+                <div class="welcome-box special-note">
+                    <h3>👨‍👩‍👧‍👦 Note to parents</h3>
+                    <p>
+                        To ensure this day remains a special moment where everyone can 
+                        fully enjoy the festivities, we have chosen to celebrate 
+                        our union in an adults-only atmosphere. We kindly ask you to come 
+                        without your children (unless specifically mentioned on your invitation). 
+                        We appreciate your understanding and invite you to make 
+                        arrangements in advance to enjoy this beautiful evening peacefully.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photos Section -->
+    <section class="section">
+        <div class="lang-content fr active">
+            <h2 class="section-title">Quelques Photos</h2>
+        </div>
+        <div class="lang-content en">
+            <h2 class="section-title">Some Photos</h2>
+        </div>
+        <div class="gallery" id="photoGallery">
+            <!-- Photos will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Programme -->
     <section id="programme" class="section">
         <div class="lang-content fr active">
             <h2 class="section-title">Programme de la Journée</h2>
@@ -498,11 +534,11 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-time">18h00 - 20h00</div>
-                    <div class="timeline-content">Cocktail - 10 pièces et 2 animations de buffet</div>
+                    <div class="timeline-content">Cocktail</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-time">21h00</div>
-                    <div class="timeline-content">Dîner - Entrée, plat, trou Normand et fromages</div>
+                    <div class="timeline-content">Dîner</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-time">22h45</div>
@@ -537,7 +573,7 @@
         </div>
     </section>
 
-    <!-- Infos Pratiques / Practical Info -->
+    <!-- Infos Pratiques -->
     <section id="infos" class="section">
         <div class="lang-content fr active">
             <h2 class="section-title">Informations Pratiques</h2>
@@ -557,11 +593,6 @@
                     <h3>🚕 Transport</h3>
                     <p>Services de taxi disponibles : Uber et Bolt fonctionnent dans la zone.<br>
                     30 minutes depuis Bercy Village, Paris.</p>
-                </div>
-                <div class="info-card">
-                    <h3>🎁 Liste de Mariage</h3>
-                    <p>Pour contribuer à notre nouvelle vie ensemble.</p>
-                    <a href="#" class="cta-button">Voir la liste (Bientôt disponible)</a>
                 </div>
             </div>
         </div>
@@ -585,361 +616,160 @@
                     30 minutes from Bercy Village, Paris.</p>
                 </div>
                 <div class="info-card">
-                    <h3>🎁 Wedding Registry</h3>
-                    <p>To contribute to our new life together.</p>
-                    <a href="#" class="cta-button">View Registry (Coming Soon)</a>
+                    <h3>👗 Dress Code</h3>
+                    <p><strong>Formal attire required</strong><br>
+                    Gentlemen: Suit<br>
+                    Ladies: Elegant dress<br>
+                    <em>Let's all be elegant for this beautiful day!</em></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Photos -->
-    <section id="photos" class="section">
-        <div class="lang-content fr active">
-            <h2 class="section-title">Nos Moments</h2>
-        </div>
-        <div class="lang-content en">
-            <h2 class="section-title">Our Moments</h2>
-        </div>
-        <div class="gallery" id="photoGallery">
-            <!-- Les photos seront chargées dynamiquement par JavaScript -->
-        </div>
-    </section>
-
-    <!-- Hébergements / Accommodations -->
+    <!-- Hébergements (version simplifiée) -->
     <section id="hebergements" class="section">
         <div class="lang-content fr active">
             <h2 class="section-title">Hébergements à Proximité</h2>
-            
-            <h3 class="accommodation-title">Locations & Gîtes</h3>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>La Maison du Bonheur</h3>
-                    <p>📍 94440 Santeny<br>
-                    4 chambres, 10 voyageurs<br>
-                    François PENNACCIOLI<br>
-                    📞 06 28 23 64 04<br>
-                    <em>(2 nuits minimum)</em></p>
+                    <h3>🏨 Ibis Budget Santeny</h3>
+                    <p>À 800m du château<br>
+                    50 chambres - ~60€/nuit<br>
+                    📞 +33 1 43 86 15 14</p>
                 </div>
                 <div class="info-card">
-                    <h3>Château de Choigny</h3>
-                    <p>📍 23 rue de Lésigny, 94440 Santeny<br>
-                    1 gîte pour 2 personnes<br>
-                    90€/nuit (minimum 2 nuits)<br>
-                    Véronique BOUAN<br>
-                    📞 01 43 86 11 93<br>
-                    <em>(fermé du 15/07 au 30/08)</em></p>
+                    <h3>🏨 Kyriad Brie-Comte-Robert</h3>
+                    <p>53 chambres - ~80€/nuit<br>
+                    📞 +33 1 64 05 76 67</p>
                 </div>
                 <div class="info-card">
-                    <h3>Château Larose</h3>
-                    <p>📍 94520 Mandres-les-Roses<br>
-                    9 chambres, 14 voyageurs<br>
-                    Carl AUGUST<br>
-                    <em>(7 nuits minimum)</em></p>
-                </div>
-                <div class="info-card">
-                    <h3>La Vie est Belle</h3>
-                    <p>📍 77166 Grisy-Suisnes<br>
-                    Maison de 200m² avec piscine<br>
-                    15 couchages<br>
-                    Manuel & Morgane<br>
-                    📞 06 07 73 41 34</p>
+                    <h3>🏠 Locations & Gîtes</h3>
+                    <p>Plusieurs options disponibles<br>
+                    Contactez-nous pour la liste complète</p>
                 </div>
             </div>
-
-            <h3 class="accommodation-title">Hôtels à moins de 10km</h3>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>Ibis Budget ⭐⭐</h3>
-                    <p>📍 À 800m du château<br>
-                    L'Orée du Val de Marne<br>
-                    Rue du Noyer de Saint-Germain, 94440 Santeny<br>
-                    50 chambres - Environ 60€/nuit<br>
-                    📞 +33 1 43 86 15 14<br>
-                    ✉️ h2347@accor.com</p>
-                </div>
-                <div class="info-card">
-                    <h3>Kyriad ⭐⭐⭐ Brie-Comte-Robert</h3>
-                    <p>📍 Zone de la Haie Passart<br>
-                    Rue Gustave Eiffel, 77170 Brie-Comte-Robert<br>
-                    53 chambres - Environ 80€/nuit<br>
-                    📞 +33 1 64 05 76 67<br>
-                    ✉️ briecomterobert@kyriad.fr</p>
-                </div>
-                <div class="info-card">
-                    <h3>Kyriad ⭐⭐⭐ Bonneuil</h3>
-                    <p>📍 Carrefour du Général de Gaulle<br>
-                    Av Jean Rostand, 94380 Bonneuil-sur-Marne<br>
-                    80 chambres - Environ 80€/nuit<br>
-                    📞 +33 1 49 56 11 46<br>
-                    ✉️ bonneuil@kyriad.fr</p>
-                </div>
-                <div class="info-card">
-                    <h3>Les Demeures de Varennes</h3>
-                    <p>📍 2 rue de Brie, 91480 Varennes-Jarcy<br>
-                    Avec piscine et restaurant<br>
-                    25 chambres - Environ 120€/nuit<br>
-                    📞 01 69 00 53 87<br>
-                    ✉️ bonjour@demeuresdevarennes.com</p>
-                </div>
-                <div class="info-card">
-                    <h3>Abbaye du Golf ⭐⭐⭐</h3>
-                    <p>📍 Ferme des Hyverneaux, 77150 Lésigny<br>
-                    50 chambres - Environ 100€/nuit<br>
-                    📞 01 60 02 25 26<br>
-                    ✉️ reservation@hotelabbayedugolf.com</p>
-                </div>
-            </div>
-
-            <h3 class="accommodation-title">À Paris - Bercy Village</h3>
-            <div class="info-card" style="max-width: 600px; margin: 0 auto;">
-                <h3>Bercy Village</h3>
-                <p>Dans la capitale et au plus près du Château<br>
-                Hôtels, boutiques et restaurants<br>
-                30 minutes du château<br><br>
-                <strong>Restaurant recommandé :</strong><br>
-                CHAI 33 - 33 cour Saint-Émilion, Paris 75012</p>
-            </div>
-
-            <p class="accommodation-note">
-                ℹ️ Tarifs indiqués à titre indicatif - Merci de consulter directement les établissements<br>
-                🚐 Service navette possible pour certains hôtels
-            </p>
         </div>
         <div class="lang-content en">
             <h2 class="section-title">Nearby Accommodations</h2>
-            
-            <h3 class="accommodation-title">Vacation Rentals & Cottages</h3>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>La Maison du Bonheur</h3>
-                    <p>📍 94440 Santeny<br>
-                    4 bedrooms, 10 guests<br>
-                    François PENNACCIOLI<br>
-                    📞 06 28 23 64 04<br>
-                    <em>(2 nights minimum)</em></p>
+                    <h3>🏨 Ibis Budget Santeny</h3>
+                    <p>800m from the castle<br>
+                    50 rooms - ~60€/night<br>
+                    📞 +33 1 43 86 15 14</p>
                 </div>
                 <div class="info-card">
-                    <h3>Château de Choigny</h3>
-                    <p>📍 23 rue de Lésigny, 94440 Santeny<br>
-                    1 cottage for 2 people<br>
-                    90€/night (minimum 2 nights)<br>
-                    Véronique BOUAN<br>
-                    📞 01 43 86 11 93<br>
-                    <em>(closed from 15/07 to 30/08)</em></p>
+                    <h3>🏨 Kyriad Brie-Comte-Robert</h3>
+                    <p>53 rooms - ~80€/night<br>
+                    📞 +33 1 64 05 76 67</p>
                 </div>
                 <div class="info-card">
-                    <h3>Château Larose</h3>
-                    <p>📍 94520 Mandres-les-Roses<br>
-                    9 bedrooms, 14 guests<br>
-                    Carl AUGUST<br>
-                    <em>(7 nights minimum)</em></p>
-                </div>
-                <div class="info-card">
-                    <h3>La Vie est Belle</h3>
-                    <p>📍 77166 Grisy-Suisnes<br>
-                    200m² house with pool<br>
-                    Sleeps 15<br>
-                    Manuel & Morgane<br>
-                    📞 06 07 73 41 34</p>
+                    <h3>🏠 Rentals & Cottages</h3>
+                    <p>Several options available<br>
+                    Contact us for the complete list</p>
                 </div>
             </div>
-
-            <h3 class="accommodation-title">Hotels within 10km</h3>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>Ibis Budget ⭐⭐</h3>
-                    <p>📍 800m from the castle<br>
-                    L'Orée du Val de Marne<br>
-                    Rue du Noyer de Saint-Germain, 94440 Santeny<br>
-                    50 rooms - Around 60€/night<br>
-                    📞 +33 1 43 86 15 14<br>
-                    ✉️ h2347@accor.com</p>
-                </div>
-                <div class="info-card">
-                    <h3>Kyriad ⭐⭐⭐ Brie-Comte-Robert</h3>
-                    <p>📍 Zone de la Haie Passart<br>
-                    Rue Gustave Eiffel, 77170 Brie-Comte-Robert<br>
-                    53 rooms - Around 80€/night<br>
-                    📞 +33 1 64 05 76 67<br>
-                    ✉️ briecomterobert@kyriad.fr</p>
-                </div>
-                <div class="info-card">
-                    <h3>Kyriad ⭐⭐⭐ Bonneuil</h3>
-                    <p>📍 Carrefour du Général de Gaulle<br>
-                    Av Jean Rostand, 94380 Bonneuil-sur-Marne<br>
-                    80 rooms - Around 80€/night<br>
-                    📞 +33 1 49 56 11 46<br>
-                    ✉️ bonneuil@kyriad.fr</p>
-                </div>
-                <div class="info-card">
-                    <h3>Les Demeures de Varennes</h3>
-                    <p>📍 2 rue de Brie, 91480 Varennes-Jarcy<br>
-                    With pool and restaurant<br>
-                    25 rooms - Around 120€/night<br>
-                    📞 01 69 00 53 87<br>
-                    ✉️ bonjour@demeuresdevarennes.com</p>
-                </div>
-                <div class="info-card">
-                    <h3>Abbaye du Golf ⭐⭐⭐</h3>
-                    <p>📍 Ferme des Hyverneaux, 77150 Lésigny<br>
-                    50 rooms - Around 100€/night<br>
-                    📞 01 60 02 25 26<br>
-                    ✉️ reservation@hotelabbayedugolf.com</p>
-                </div>
-            </div>
-
-            <h3 class="accommodation-title">In Paris - Bercy Village</h3>
-            <div class="info-card" style="max-width: 600px; margin: 0 auto;">
-                <h3>Bercy Village</h3>
-                <p>In the capital and closest to the Castle<br>
-                Hotels, shops and restaurants<br>
-                30 minutes from the castle<br><br>
-                <strong>Recommended restaurant:</strong><br>
-                CHAI 33 - 33 cour Saint-Émilion, Paris 75012</p>
-            </div>
-
-            <p class="accommodation-note">
-                ℹ️ Rates shown are indicative - Please contact establishments directly<br>
-                🚐 Shuttle service possible for some hotels
-            </p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="lang-content fr active">
-            <p>Alexia & Vianney - 5 Juin 2026</p>
+            <p style="font-size: 1.3rem; margin-bottom: 1rem;">Alexia & Vianney - 5 Juin 2026</p>
             <p>Nous avons hâte de célébrer avec vous ❤️</p>
         </div>
         <div class="lang-content en">
-            <p>Alexia & Vianney - June 5, 2026</p>
+            <p style="font-size: 1.3rem; margin-bottom: 1rem;">Alexia & Vianney - June 5, 2026</p>
             <p>We can't wait to celebrate with you ❤️</p>
         </div>
     </footer>
 
     <script>
-        // Configuration pour GitHub Pages
-        // IMPORTANT: Remplacez 'votre-username' par votre nom d'utilisateur GitHub
-        // et 'votre-repo' par le nom de votre repository
-        const githubUsername = 'votre-username'; // REMPLACEZ ICI
-        const githubRepo = 'votre-repo'; // REMPLACEZ ICI
-        
-        // Détection automatique si on est sur GitHub Pages
+        // Détection du chemin pour GitHub Pages
         const isGitHubPages = window.location.hostname.includes('github.io');
-        
-        // Construction du chemin de base
-        let basePath = '';
-        if (isGitHubPages) {
-            // Sur GitHub Pages, le chemin inclut le nom du repo
-            basePath = `/${githubRepo}`;
-        }
-        
-        // Liste des images à charger
-        const images = [
-            'chateau-santeny.jpg',
-            'photo1.jpg',
-            'photo2.jpg'
-        ];
-        
-        // Fonction pour charger l'image de fond du hero
-        function loadHeroBackground() {
-            const heroBg = document.getElementById('heroBg');
-            const chateauImage = new Image();
-            
-            // Construire le chemin complet de l'image
-            const imagePath = isGitHubPages 
-                ? `${basePath}/chateau-santeny.jpg`
-                : './chateau-santeny.jpg';
-            
-            chateauImage.onload = function() {
-                heroBg.style.backgroundImage = `url('${imagePath}')`;
+        const basePath = isGitHubPages 
+            ? '/' + window.location.pathname.split('/')[1] 
+            : '.';
+
+        // Vérifier si l'image du château se charge, sinon utiliser le backup
+        window.addEventListener('load', function() {
+            const hero = document.querySelector('.hero');
+            const testImage = new Image();
+            testImage.onerror = function() {
+                // Si l'image locale ne marche pas, ajouter la classe backup
+                hero.classList.add('with-backup');
+                console.log('Using backup image from Wikipedia');
             };
-            
-            chateauImage.onerror = function() {
-                console.log('Image château non trouvée, utilisation du fallback');
-                // Fallback avec un gradient si l'image ne charge pas
-                heroBg.style.background = 'linear-gradient(135deg, #8B7355 0%, #D4AF37 100%)';
+            testImage.onload = function() {
+                console.log('Local château image loaded successfully');
             };
-            
-            chateauImage.src = imagePath;
-        }
-        
-        // Fonction pour charger la galerie de photos
+            testImage.src = `${basePath}/chateau-santeny.jpg`;
+        });
+
+        // Charger la galerie de photos
         function loadGallery() {
             const gallery = document.getElementById('photoGallery');
-            gallery.innerHTML = ''; // Vider la galerie
-            
-            // Images à afficher dans la galerie (excluant le château)
-            const galleryImages = ['photo1.jpg', 'photo2.jpg'];
-            
-            galleryImages.forEach((imageName, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
+            const photos = [
+                { file: 'photo1.jpg', alt: 'Photo 1' },
+                { file: 'photo2.jpg', alt: 'Photo 2' }
+            ];
+
+            photos.forEach((photo, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
                 
                 const img = document.createElement('img');
-                img.className = 'gallery-img';
+                img.src = `${basePath}/${photo.file}`;
+                img.alt = photo.alt;
                 
-                // Construire le chemin complet
-                const imagePath = isGitHubPages 
-                    ? `${basePath}/${imageName}`
-                    : `./${imageName}`;
-                
-                img.src = imagePath;
-                img.alt = `Photo ${index + 1}`;
-                
-                // Gestion d'erreur pour chaque image
                 img.onerror = function() {
-                    console.log(`Image ${imageName} non trouvée`);
-                    // Remplacer par un placeholder si l'image ne charge pas
-                    galleryItem.innerHTML = `
-                        <div class="gallery-placeholder">
-                            <span>Photo ${index + 1}<br>(À venir)</span>
+                    // Si l'image ne charge pas, utiliser un placeholder
+                    item.innerHTML = `
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #E8D5C4, #D4AF37); color: white; font-size: 1.2rem;">
+                            <span>Photo ${index + 1}<br>(Bientôt disponible)</span>
                         </div>
                     `;
                 };
                 
-                galleryItem.appendChild(img);
-                gallery.appendChild(galleryItem);
+                item.appendChild(img);
+                gallery.appendChild(item);
             });
-            
-            // Ajouter des placeholders supplémentaires pour compléter la galerie
-            for (let i = galleryImages.length; i < 4; i++) {
-                const placeholderItem = document.createElement('div');
-                placeholderItem.className = 'gallery-item';
-                placeholderItem.innerHTML = `
-                    <div class="gallery-placeholder">
-                        <span>Photo ${i + 1}<br>(À venir)</span>
+
+            // Ajouter des placeholders pour compléter
+            for (let i = photos.length; i < 3; i++) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'gallery-item';
+                placeholder.innerHTML = `
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #E8D5C4, #D4AF37); color: white; font-size: 1.2rem;">
+                        <span>Photo ${i + 1}<br>(Bientôt disponible)</span>
                     </div>
                 `;
-                gallery.appendChild(placeholderItem);
+                gallery.appendChild(placeholder);
             }
         }
-        
-        // Mobile menu toggle
+
+        // Mobile menu
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
         
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
-        
+
         // Close menu when clicking on a link
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
             });
         });
-        
+
         // Language switcher
         function switchLang(lang) {
-            // Update button states
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
             
-            // Update content
             document.querySelectorAll('.lang-content').forEach(content => {
                 content.classList.remove('active');
             });
@@ -949,25 +779,25 @@
             
             // Update navigation
             const navItems = {
-                fr: ['Accueil', 'Nos Moments', 'Programme', 'Infos Pratiques', 'Photos', 'Liste de Mariage', 'Hébergements'],
-                en: ['Home', 'Our Moments', 'Schedule', 'Practical Info', 'Photos', 'Wedding Registry', 'Accommodations']
+                fr: ['Accueil', 'Bienvenue', 'Programme', 'Infos Pratiques', 'Hébergements'],
+                en: ['Home', 'Welcome', 'Schedule', 'Practical Info', 'Accommodations']
             };
             
-            const links = document.querySelectorAll('.nav-link');
+            const links = document.querySelectorAll('.nav-link:not(.cta-nav)');
             links.forEach((link, index) => {
                 if (navItems[lang][index]) {
                     link.textContent = navItems[lang][index];
                 }
             });
         }
-        
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const offsetTop = target.offsetTop - 70; // Compenser pour la navbar fixe
+                    const offsetTop = target.offsetTop - 70;
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
@@ -975,36 +805,20 @@
                 }
             });
         });
-        
-        // Add scroll effect to navbar
+
+        // Load gallery on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGallery();
+        });
+
+        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
                 navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
             }
-        });
-        
-        // Charger les images au chargement de la page
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('🔍 Démarrage du chargement des images...');
-            console.log('📍 URL actuelle:', window.location.href);
-            console.log('📂 Chemin de base détecté:', basePath);
-            
-            // Essayer de charger votre image personnalisée
-            tryLoadCustomChateauImage();
-            
-            // Charger la galerie de photos
-            loadGallery();
-            
-            // Test de diagnostic pour vérifier les chemins
-            console.log('🖼️ Chemins des images:');
-            console.log('  - Château (votre image):', `${basePath}/chateau-santeny.jpg`);
-            console.log('  - Photo 1:', `${basePath}/photo1.jpg`);
-            console.log('  - Photo 2:', `${basePath}/photo2.jpg`);
         });
     </script>
 </body>
